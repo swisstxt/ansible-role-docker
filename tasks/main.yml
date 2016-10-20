@@ -1,0 +1,26 @@
+---
+- name: add docker repository
+  copy:
+    src: docker.repo
+    dest: /etc/yum.repos.d/docker.repo
+    mode: 0644
+  register: repo_added
+
+- name: remove legacy docker package
+  yum:
+    pkg: docker
+    state: absent
+  when: repo_added.changed
+
+- name: install docker
+  yum:
+    pkg: "docker-engine-{{ docker_version }}"
+    state: installed
+  notify: restart docker
+
+- name: enable docker
+  service:
+    name: docker
+    enabled: yes
+
+- meta: flush_handlers
