@@ -1,2 +1,6 @@
 ---
-docker_version: "1.12.1"
+
+docker_version: 18.03.1
+
+# docker_compose_version:  1.21.0
+# docker_user: docker

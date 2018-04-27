@@ -14,13 +14,42 @@
 
 - name: install docker
   yum:
-    pkg: "docker-engine-{{ docker_version }}"
+    pkg: "docker-ce-{{ docker_version }}.ce-1.el7.centos"
     state: installed
   notify: restart docker
+
+- name: update service file
+  template:
+    src: docker.service.j2
+    dest: /usr/lib/systemd/system/docker.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+  - run daemon-reload
+  - restart docker
 
 - name: enable docker
   service:
     name: docker
     enabled: yes
+
+- name: create a docker operator account
+  user:
+    name: "{{ docker_user }}"
+    group: docker
+    createhome: yes
+    state: present
+  when: docker_user is defined
+
+- name: install docker-compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
+    dest: /usr/bin/docker-compose
+    force: yes
+    owner: root
+    group: docker
+    mode: 0750
+  when: docker_compose_version is defined
 
 - meta: flush_handlers

@@ -1,4 +1,7 @@
 ---
+- name: run daemon-reload
+  command: /usr/bin/systemctl daemon-reload
+
 - name: restart docker
   service:
     name: docker
