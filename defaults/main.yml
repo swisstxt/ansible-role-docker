@@ -4,5 +4,5 @@ docker_version: 18.03.1
 
 docker_cleanup_cronjob: yes
 
-# docker_compose_version:  1.21.0
+# docker_compose_version:  1.21.1
 # docker_user: docker
