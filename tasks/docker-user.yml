@@ -1,0 +1,17 @@
+---
+
+- name: create a docker operator account
+  user:
+    name: "{{ docker_user }}"
+    group: docker
+    createhome: yes
+    state: present
+  when: docker_user is defined
+
+- name: modify group ownership and permissions on /etc/docker directory
+  file:
+    path: /etc/docker
+    state: directory
+    owner: root
+    group: docker
+    mode: 0710

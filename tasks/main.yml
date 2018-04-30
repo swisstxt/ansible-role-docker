@@ -18,7 +18,7 @@
     state: installed
   notify: restart docker
 
-- name: update service file
+- name: update docker systemd service file
   template:
     src: docker.service.j2
     dest: /usr/lib/systemd/system/docker.service
@@ -34,22 +34,14 @@
     name: docker
     enabled: yes
 
-- name: create a docker operator account
-  user:
-    name: "{{ docker_user }}"
-    group: docker
-    createhome: yes
-    state: present
+- name: create a non-root system user for docker management
+  import_tasks: docker-user.yml
+  tags: docker-user
   when: docker_user is defined
 
-- name: install docker-compose
-  get_url:
-    url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
-    dest: /usr/bin/docker-compose
-    force: yes
-    owner: root
-    group: docker
-    mode: 0750
+- name: be ready to run services based on docker-compose
+  import_tasks: docker-compose.yml
+  tags: docker-compose
   when: docker_compose_version is defined
 
 - name: configure a docker housekeeping cronjob
