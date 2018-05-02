@@ -32,4 +32,4 @@
     group: root
     mode: 0644
   notify:
-  - run daemon-reload
+    - run daemon-reload

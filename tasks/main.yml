@@ -26,8 +26,8 @@
     group: root
     mode: 0644
   notify:
-  - run daemon-reload
-  - restart docker
+    - run daemon-reload
+    - restart docker
 
 - name: enable docker
   service:
