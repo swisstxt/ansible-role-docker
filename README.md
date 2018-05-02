@@ -1,6 +1,6 @@
 # ansible-role-docker
 
-Install and configures Docker Community Edition on a CentOS (7) Linux System.
+This Ansible role installs and configures [Docker Community Edition for CentOS](https://store.docker.com/editions/community/docker-ce-server-centos).
 
 Optionally the following additional configuration can be added:
  - Create a non-root user to run the docker _client_ commands
