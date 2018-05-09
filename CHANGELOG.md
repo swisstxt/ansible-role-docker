@@ -36,7 +36,7 @@ TODO: Are all the Jenkins Requirements covered by v1.2.0?
 
 ## v1.0.x - 2017-..-..
 
-A bunch of changes added to satisfy [ansible-env-cargo](https://github.com/swisstxt/ansible-env-cargo) (Kubernetes) requirements
+A bunch of changes added to satisfy SWISSTXT Kubernetes Platform requirements
 
 :warning: These changes are not part of this git repo history.
 
