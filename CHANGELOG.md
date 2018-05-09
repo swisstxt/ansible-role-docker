@@ -4,7 +4,7 @@
 
 TODO: Are all the Jenkins Requirements covered by v1.2.0?
 
-## [1.2.0] - 2018-05-09
+## v1.2.0 - 2018-05-09
 
 ### Added
 
@@ -17,7 +17,7 @@ TODO: Are all the Jenkins Requirements covered by v1.2.0?
 - Use `systemd` module to run daemon-reload, instead of a raw `command` task (see also swisstxt/ansible-env-cargo#30)
   Note: handler name "run daemon-reload" is kept unchanged for backwards compatibilty (but might be renamed as something like "reload systemd" in a future release
 
-## [1.1.0] - 2018-05-02
+## v1.1.0 - 2018-05-02
 
 ### Added
 
@@ -34,7 +34,7 @@ TODO: Are all the Jenkins Requirements covered by v1.2.0?
 
 - Support for CentOS 6
 
-## [1.0.x] - 2017-..-..
+## v1.0.x - 2017-..-..
 
 A bunch of changes added to satisfy [ansible-env-cargo](https://github.com/swisstxt/ansible-env-cargo) (Kubernetes) requirements
 
