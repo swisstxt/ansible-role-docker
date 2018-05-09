@@ -40,6 +40,6 @@ A bunch of changes added to satisfy [ansible-env-cargo](https://github.com/swiss
 
 :warning: These changes are not part of this git repo history.
 
-## [1.0.0] - 2016-10-16
+## v1.0.0 - 2016-10-16
 
 Initial Release (forked from [unprofession-al](https://github.com/unprofession-al/ansible-role-docker/tree/v1.0.0) original ansible role)
