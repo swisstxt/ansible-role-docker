@@ -19,7 +19,13 @@ docker_cleanup_cronjob: yes
 docker_compose_version: 1.21.1
 
 # Username of the non-root linux account granted for docker client operations, default: None
+# Note: This user will be created by the role, including a default home directory.
+# If you need to grant docker permissions to existing users instead, use docker_users.
 docker_user: docker
+
+# A list of non-root users that should be granted access to docker, default: []
+# Note: These users must exist beforehand or the role will fail.
+docker_users: [ jenkins ]
 ```
 
 ## Credits

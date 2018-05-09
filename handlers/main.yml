@@ -7,3 +7,8 @@
   service:
     name: docker
     state: restarted
+
+- name: docker users updated
+  debug:
+    msg: docker users updates
+  listen: docker_users_updated

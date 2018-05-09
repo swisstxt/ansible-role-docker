@@ -37,7 +37,6 @@
 - name: create a non-root system user for docker management
   import_tasks: docker-user.yml
   tags: docker-user
-  when: docker_user is defined
 
 - name: be ready to run services based on docker-compose
   import_tasks: docker-compose.yml

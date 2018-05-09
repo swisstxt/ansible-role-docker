@@ -8,6 +8,14 @@
     state: present
   when: docker_user is defined
 
+- name: add users to docker group
+  user:
+    name: "{{ item }}"
+    append: yes
+    groups: docker
+  with_items: "{{ docker_users }}"
+  notify: docker_users_updated
+
 - name: modify group ownership and permissions on /etc/docker directory
   file:
     path: /etc/docker
