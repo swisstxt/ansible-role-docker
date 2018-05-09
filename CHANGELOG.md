@@ -2,8 +2,13 @@
 
 ## [Unreleased]
 
+TODO: Are all the Jenkins Requirements covered by v1.2.0?
+
+## [1.2.0] - 2018-05-09
+
 ### Added
 
+- Support for multiple docker users [GH-2]
 - A basic README file
 - A CHANGELOG file
 
