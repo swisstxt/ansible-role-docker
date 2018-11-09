@@ -48,7 +48,7 @@
   become_user: "{{ docker_user|default('root') }}"
   cron:
     name: Docker clean up
-    job: docker system prune -f
+    job: docker system prune -af
     minute: '1'
     hour: '1'
     day: '*'
