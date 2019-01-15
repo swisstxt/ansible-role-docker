@@ -14,7 +14,7 @@
 
 - name: install docker
   yum:
-    pkg: "docker-ce-{{ docker_version }}.ce-1.el7.centos"
+    pkg: "docker-ce-{{ docker_version }}"
     state: installed
   notify: restart docker
 

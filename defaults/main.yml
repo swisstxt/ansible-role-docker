@@ -1,6 +1,6 @@
 ---
 
-docker_version: 18.03.1
+docker_version: 18.09.1
 
 docker_cleanup_cronjob: yes
 
