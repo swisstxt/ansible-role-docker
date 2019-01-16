@@ -54,6 +54,6 @@
     day: '*'
     month: '*'
     weekday: '0'
-  when: docker_cleanup_cronjob|bool
+    disabled: "{{ not (docker_cleanup_cronjob|bool) }}"
 
 - meta: flush_handlers
