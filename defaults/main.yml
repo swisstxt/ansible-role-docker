@@ -2,6 +2,8 @@
 
 docker_version: 18.09.1
 
+docker_pinversion: no
+
 docker_cleanup_cronjob: yes
 
 docker_users: []

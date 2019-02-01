@@ -12,11 +12,45 @@
     state: absent
   when: repo_added.changed
 
+- name: install yum-plugin-versionlock
+  yum:
+   pkg: yum-plugin-versionlock
+  when: docker_pinversion
+
+- name: unpin version
+  shell: yum versionlock delete docker-ce
+  args:
+    warn: no
+  when: not docker_pinversion
+  register: cmd_unpinversion
+  changed_when: "'versionlock deleted: 1' in cmd_unpinversion.stdout"
+  failed_when: false
+
 - name: install docker
   yum:
     pkg: "docker-ce-{{ docker_version }}"
     state: installed
+    disable_plugin: versionlock
+    allow_downgrade: true
+  register: cmd_installdocker
   notify: restart docker
+
+- name: unpin version
+  shell: yum versionlock delete docker-ce
+  args:
+    warn: no
+  when: docker_pinversion and cmd_installdocker.changed
+  register: cmd_unpinversion2
+  changed_when: "'versionlock deleted: 1' in cmd_unpinversion2.stdout"
+  failed_when: false
+
+- name: pin version
+  shell: yum versionlock add docker-ce
+  args:
+    warn: no
+  when: docker_pinversion
+  register: cmd_pinversion
+  changed_when: "'versionlock added: 1' in cmd_pinversion.stdout"
 
 - name: update docker systemd service file
   template:
