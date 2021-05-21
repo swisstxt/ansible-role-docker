@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+
+[Service]
+ExecStart=
+ExecStart=-/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --exec-opt native.cgroupdriver=systemd {{ docker_extraopts }}
+
+# Assign Docker to its own slice to avoid contention of other services
+Slice=runtime.slice

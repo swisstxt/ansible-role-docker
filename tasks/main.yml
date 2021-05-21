@@ -52,10 +52,15 @@
   register: cmd_pinversion
   changed_when: "'versionlock added: 1' in cmd_pinversion.stdout"
 
+- name: create docker.service.d directory
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+
 - name: update docker systemd service file
   template:
-    src: docker.service.j2
-    dest: /usr/lib/systemd/system/docker.service
+    src: docker-role.conf.j2
+    dest: /etc/systemd/system/docker.service.d/docker-role.conf
     owner: root
     group: root
     mode: 0644
