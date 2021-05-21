@@ -1,6 +1,6 @@
 ---
 
-docker_version: 18.09.1
+docker_version:
 
 docker_pinversion: no
 
