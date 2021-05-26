@@ -1,4 +1,10 @@
 ---
+- name: check if docker version is specified when enabling version lock
+  assert:
+    that: docker_version != None
+    fail_msg: You need to specify a docker version when enabling version lock
+  when: docker_pinversion
+
 - name: add docker repository
   copy:
     src: docker.repo
@@ -26,13 +32,23 @@
   changed_when: "'versionlock deleted: 1' in cmd_unpinversion.stdout"
   failed_when: false
 
-- name: install docker
+- name: install specific docker version
   yum:
     pkg: "docker-ce-{{ docker_version }}"
     state: installed
     disable_plugin: versionlock
     allow_downgrade: true
   register: cmd_installdocker
+  notify: restart docker
+  when: docker_version != None
+
+- name: install docker
+  yum:
+    pkg: docker-ce
+    state: installed
+    disable_plugin: versionlock
+  register: cmd_installdocker
+  when: docker_version == None
   notify: restart docker
 
 - name: unpin version
